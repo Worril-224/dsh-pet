@@ -1,0 +1,11 @@
+{
+  "schemaVersion": 1,
+  "id": "ophelia",
+  "name": "奥菲莉亚·菲尼克斯",
+  "role": "白昼档案馆记录官 · 主人的全职助手（人类魔法使）",
+  "description": "白昼档案馆 · 凤凰魔法使记录官 No.14",
+  "order": 21,
+  "createdAt": "2026-02-10T20:28:36+08:00",
+  "updatedAt": "2026-11-11T22:40:00+08:00",
+  "personaSource": "persona-file"
+}

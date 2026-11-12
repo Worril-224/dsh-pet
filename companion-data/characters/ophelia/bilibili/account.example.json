@@ -1,0 +1,11 @@
+{
+  "_说明": "B 站账号配置模板：复制为同目录下的 account.json 后填写。Cookie 至少包含 SESSDATA 和 bili_jct；csrf 留空会自动从 Cookie 提取 bili_jct。ownerUid 是主人 B 站 UID（纯数字），不是 QQ 号。此文件含登录凭证，已被 .gitignore 忽略，不要提交到公开仓库。",
+  "cookie": "",
+  "csrf": "",
+  "ownerUid": "12345678",
+  "ownerName": "示例主人",
+  "commentEnabled": false,
+  "selfUid": "",
+  "selfName": "奥菲莉亚（示例账号）",
+  "updatedAt": "2026-11-11T21:20:00+08:00"
+}

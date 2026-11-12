@@ -1,0 +1,43 @@
+# 依赖与运行时
+node_modules/
+*.log
+.pnpm-store/
+
+# 系统杂项
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# 环境变量与凭据
+.env
+.env.*
+!.env.example
+
+# ============================================================
+# 运行时私有数据（含真实账号凭据 / 你的私人聊天记录）——绝不提交
+# 仓库里随附的是 *.example.json 示例文件；真实文件在运行时生成。
+# ============================================================
+# QQ 通道配置：NapCat 机器人 QQ / QQ 官方机器人 AppID+AppSecret / openid 白名单
+companion-data/characters/*/qq/channel.json
+companion-data/characters/*/qq/qqbot.json
+companion-data/characters/*/qq/reply-model.json
+# B 站登录 Cookie
+companion-data/characters/*/bilibili/account.json
+# 模型按钮预设（含本机 provider/model 组合）
+companion-data/models-presets.json
+
+# 运行时生成物
+companion-data/characters/*/qq/status.json
+companion-data/characters/*/qq/sessions.json
+companion-data/characters/*/life/day-plan-*.json
+companion-data/characters/*/images/generated/*
+companion-data/characters/*/memory/long-term/*.tmp-*
+
+# NapCat（第三方 QQ 客户端壳，自行下载，不随仓库分发）
+NapCat.Shell/
+napcat/
+napcat-*/
+
+# 本地备份
+backups/
+*.bak

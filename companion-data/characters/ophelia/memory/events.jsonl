@@ -1,0 +1,34 @@
+{"at":"2026-02-10T20:29:21+08:00","type":"maintenance","message":"完成记忆维护（首次运行初始化）：夜间转移 0 条，上浮 0 条，下沉 0 条。","transferred":0,"promoted":0,"demoted":0}
+{"at":"2026-02-10T20:35:00+08:00","type":"seed","message":"从人设个人经历导入 6 条记忆（跳过 0 条）。","created":["seed-ophelia-001","seed-ophelia-002","seed-ophelia-003","seed-ophelia-004","seed-ophelia-005","seed-ophelia-006"],"skipped":0}
+{"at":"2026-03-02T12:31:00+08:00","type":"memory_created","itemId":"mem-000002","message":"自动抽取记忆：主人问起奥菲莉亚的饮食口味。","category":"喜好","layer":"短期记忆"}
+{"at":"2026-04-10T23:02:00+08:00","type":"memory_created","itemId":"mem-000001","message":"自动抽取记忆：奥菲莉亚把要紧的事写在册子最前面。","category":"情绪","layer":"短期记忆"}
+{"at":"2026-05-18T16:41:00+08:00","type":"memory_created","itemId":"mem-000003","message":"自动抽取记忆：跟修复师学装订，第一次独立缝好一册。","category":"工作学习","layer":"短期记忆"}
+{"at":"2026-05-18T16:41:00+08:00","type":"memory_created","itemId":"mem-000003","message":"自动抽取记忆：跟修复师学装订，第一次独立缝好一册。","category":"工作学习","layer":"短期记忆"}
+{"at":"2026-06-02T15:02:00+08:00","type":"memory_created","itemId":"mem-000006","message":"自动抽取记忆：第一次独自开索引门。","category":"工作学习","layer":"短期记忆"}
+{"at":"2026-07-11T21:12:00+08:00","type":"memory_created","itemId":"mem-000005","message":"自动抽取记忆：雨夜念了一段写海边的散文。","category":"事件","layer":"短期记忆"}
+{"at":"2026-08-05T21:41:00+08:00","type":"memory_created","itemId":"mem-000004","message":"自动抽取记忆：收藏了一段图书馆环境白噪音。","category":"喜好","layer":"短期记忆"}
+{"at":"2026-09-01T04:01:00+08:00","type":"maintenance","message":"完成记忆维护（每日凌晨维护窗口）：夜间转移 4 条，上浮 1 条，下沉 2 条。","transferred":4,"promoted":1,"demoted":2}
+{"at":"2026-09-10T04:06:00+08:00","type":"layer_moved","itemId":"mem-000006","message":"超过 7 天未提及，下沉一层（第一层 → 第二层）","from":"第一层","to":"第二层","reason":"超过 7 天未提及，下沉一层"}
+{"at":"2026-09-12T22:02:00+08:00","type":"memory_created","itemId":"mem-000010","message":"自动抽取记忆：答应晚归留一盏走廊小灯。","category":"承诺","layer":"短期记忆"}
+{"at":"2026-09-28T11:02:00+08:00","type":"memory_created","itemId":"mem-000009","message":"自动抽取记忆：被说身上有旧纸味。","category":"喜好","layer":"短期记忆"}
+{"at":"2026-10-06T17:22:00+08:00","type":"memory_created","itemId":"mem-000008","message":"自动抽取记忆：两回试烤柠檬挞。","category":"事件","layer":"短期记忆"}
+{"at":"2026-10-15T07:32:00+08:00","type":"memory_created","itemId":"mem-000007","message":"自动抽取记忆：主人出门三天，核对行李单。","category":"人际","layer":"短期记忆"}
+{"at":"2026-10-25T13:42:00+08:00","type":"memory_created","itemId":"mem-000016","message":"自动抽取记忆：修复一本散页的旧诗集。","category":"事件","layer":"短期记忆"}
+{"at":"2026-10-28T21:17:00+08:00","type":"memory_created","itemId":"mem-000015","message":"自动抽取记忆：收到一段雨声录音。","category":"喜好","layer":"短期记忆"}
+{"at":"2026-11-01T20:32:00+08:00","type":"memory_created","itemId":"mem-000014","message":"自动抽取记忆：主人夸索引顺手。","category":"情绪","layer":"短期记忆"}
+{"at":"2026-11-03T10:07:00+08:00","type":"memory_created","itemId":"mem-000013","message":"自动抽取记忆：校对二十页借阅目录。","category":"工作学习","layer":"短期记忆"}
+{"at":"2026-11-04T15:22:00+08:00","type":"memory_created","itemId":"mem-000012","message":"自动抽取记忆：重排东墙书架。","category":"事件","layer":"短期记忆"}
+{"at":"2026-11-05T22:42:00+08:00","type":"memory_created","itemId":"mem-000011","message":"自动抽取记忆：主人加班晚归。","category":"人际","layer":"短期记忆"}
+{"at":"2026-11-07T21:50:00+08:00","type":"conversation_created","itemId":"mem-000024","message":"新建对话记忆：今天有点累，先睡了。","category":"人际","layer":"短期记忆"}
+{"at":"2026-11-08T19:31:00+08:00","type":"memory_created","itemId":"mem-000023","message":"自动抽取记忆：给掉页的诗集换封皮。","category":"事件","layer":"短期记忆"}
+{"at":"2026-11-09T08:41:00+08:00","type":"memory_created","itemId":"mem-000022","message":"自动抽取记忆：早上出门，递伞叮嘱。","category":"人际","layer":"短期记忆"}
+{"at":"2026-11-09T22:12:00+08:00","type":"memory_created","itemId":"mem-000021","message":"自动抽取记忆：约好周末去旧书铺。","category":"承诺","layer":"短期记忆"}
+{"at":"2026-11-10T14:34:00+08:00","type":"memory_created","itemId":"mem-000020","message":"自动抽取记忆：主人工作不顺，陪着站了一会儿。","category":"情绪","layer":"短期记忆"}
+{"at":"2026-11-10T21:09:00+08:00","type":"memory_created","itemId":"mem-000019","message":"自动抽取记忆：旧植物图鉴里的银杏叶。","category":"喜好","layer":"短期记忆"}
+{"at":"2026-11-10T23:40:00+08:00","type":"memories_mentioned","itemIds":["mem-000020","mem-000019","mem-000011","mem-000010"],"message":"本轮回复引用了 4 条记忆（mem-000020、mem-000019、mem-000011、mem-000010）。","reason":"QQ 单轮对话记忆整理"}
+{"at":"2026-11-11T04:01:00+08:00","type":"maintenance","message":"完成记忆维护（每日凌晨维护窗口）：夜间转移 6 条，上浮 2 条，下沉 5 条。","transferred":6,"promoted":2,"demoted":5}
+{"at":"2026-11-11T04:01:00+08:00","type":"layer_moved","itemId":"mem-000011","message":"短期记忆条数已满，将最早的一半转入长期记忆第一层（主人加班到很晚才回来）。","from":"短期记忆","to":"第一层","reason":"短期记忆条数已满，最早的一半转入长期记忆第一层"}
+{"at":"2026-11-11T04:01:00+08:00","type":"layer_moved","itemId":"mem-000012","message":"短期记忆条数已满，将最早的一半转入长期记忆第一层（按高矮重排东墙书架）。","from":"短期记忆","to":"第一层","reason":"短期记忆条数已满，最早的一半转入长期记忆第一层"}
+{"at":"2026-11-11T16:38:00+08:00","type":"memory_created","itemId":"mem-000018","message":"自动抽取记忆：发现旧借阅卡页码错装。","category":"工作学习","layer":"短期记忆"}
+{"at":"2026-11-11T20:16:00+08:00","type":"memory_created","itemId":"mem-000017","message":"自动抽取记忆：主人带了柠檬挞来。","category":"人际","layer":"短期记忆"}
+{"at":"2026-11-11T22:32:00+08:00","type":"memory_reindexed","itemId":"mem-000017","message":"记忆重索引：主人带了柠檬挞，两人一起喝茶。","reason":"QQ 单轮对话 LLM 记忆整理"}

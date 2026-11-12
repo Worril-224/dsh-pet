@@ -1,0 +1,15 @@
+{
+  "_说明": "QQ 通道配置模板：复制为同目录下的 channel.json 后按需修改。channel 可选 \"napcat\"（本地 NapCat / OneBot 11 WebSocket）或 \"qqbot\"（QQ 官方机器人）；qqbot 字段仅在选择官方机器人时需要填写，密钥留空或替换为占位符。channel.json 含登录凭据，已被 .gitignore 忽略，不要提交到公开仓库。",
+  "schemaVersion": 1,
+  "channel": "napcat",
+  "updatedAt": "2026-11-11T21:20:00+08:00",
+  "qqbot": {
+    "appId": "",
+    "clientSecret": "",
+    "sandbox": false,
+    "intents": 33554432,
+    "baseUrl": "",
+    "allowOpenids": [],
+    "pendingUsers": []
+  }
+}

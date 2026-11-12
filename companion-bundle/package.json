@@ -1,0 +1,39 @@
+{
+  "name": "@local/dsh-companion",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "情感陪伴型 AI 助手：8+1 人设模块、短期+七层长期记忆、NapCat / QQ 官方机器人双通道、Web UI 模型与通道切换面板",
+  "license": "MIT",
+  "exports": {
+    ".": "./lib/host.js",
+    "./preset": "./lib/preset.js",
+    "./qq": "./lib/qq-host.js",
+    "./life": "./lib/life/index.js",
+    "./client": "./client.js",
+    "./locale/*.json": "./locale/*.json",
+    "./icon": "./icon.svg"
+  },
+  "files": [
+    "lib/**/*.js",
+    "data/persona.default.json",
+    "client.js",
+    "locale/*.json",
+    "icon.svg",
+    "cordis.patch.yml",
+    "README.md"
+  ],
+  "dsh": {
+    "bundle": {
+      "patch": "./cordis.patch.yml"
+    },
+    "client": {
+      "platform": "web",
+      "immediately": true,
+      "inject": [
+        "@deepseek-ai/dsh-client-ui-layout",
+        "@deepseek-ai/dsh-client-ui-sidebar"
+      ]
+    }
+  }
+}

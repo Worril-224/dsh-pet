@@ -1,0 +1,160 @@
+# 情感陪伴 AI 助手 bundle（方案 A：每个角色一个独立角色目录，人设与记忆互不共享）：
+# 1) companion-host：Host 插件，扫描角色根目录并逐角色调度每日 04:00-06:00 记忆维护；
+# 2) preset-companion：声明「情感陪伴 · 奥菲莉亚」Agent 预设，挂载 companion-core（人设注入 + 记忆注入 + 陪伴工具）；
+# 3) companion-qq：QQ 通道（OneBot 11 / NapCat 或 QQ 官方机器人，可在 Web UI「模型」面板切换），
+#    白名单只允许主人，奥菲莉亚常驻 QQ 聊天。
+# 新增角色：运行 scripts/add-character.mjs 或 scripts/import-persona.mjs 生成角色目录与预设片段，把片段写入本文件后重新安装 bundle。
+#
+# 本文件是安装模板，不含任何机器相关的绝对路径或真实账号；安装时按注释把示例值改成你自己的：
+#   - charactersDir：角色根目录。不填 = 默认 ~/.dsh/dsh-pet/companion-data/characters
+#     （可用环境变量 DSH_PET_DATA_DIR 覆盖数据根目录）。
+#   - botQQ / allowUsers：你自己的机器人 QQ 与主人 QQ，不填或留空会导致 QQ 通道无法启动。
+#   - accessToken / qqbot：NapCat / QQ 官方机器人凭据，按你的环境填写（不要提交到公开仓库）。
+#   - comfy*：可选，仅在使用本地 ComfyUI 生图时需要。
+- insert:
+    - id: companion-host
+      name: '@local/dsh-companion'
+      config:
+        # 角色根目录。留空使用默认：$DSH_PET_DATA_DIR 或 ~/.dsh/dsh-pet/companion-data/characters
+        # 需要自定义时取消下一行注释，改成你自己的绝对路径：
+        # charactersDir: '/absolute/path/to/companion-data/characters'
+        checkIntervalMinutes: 10
+        lifeDeferredContent: true
+        # B站观看：每天随机 4 次、每次 5 个、每天最多 20 个；
+        # Cookie / 主人 UID 填在角色目录 bilibili/account.json；未配置时只看视频+写记忆，不发评论。
+        bilibili:
+          enabled: true
+          dailyLimit: 20
+          sessionSize: 5
+          maxSessions: 4
+          startHour: 9
+          endHour: 23
+          watchStartHour: 19
+          watchEndHour: 23
+          summaryMaxChars: 30000
+          commentEnabled: true
+          commentMaxPerDay: 5
+          searchPages: 2
+    - id: preset-companion
+      name: '@deepseek-ai/dsh-agent-preset'
+      config:
+        id: companion
+        name: 情感陪伴 · 奥菲莉亚·菲尼克斯
+        description: 奥菲莉亚·菲尼克斯（Ophelia Phoenix）：白昼档案馆第七阅览室的凤凰魔法使记录官、圣栎魔法学院首席毕业生、主人的全职助手；拥有独立人设与七层长期记忆（方案 A：与其他角色记忆隔离）
+        order: 20
+        plugins:
+          - id: companion-core
+            name: '@local/dsh-companion/preset'
+            config:
+              # 与 companion-host 的 charactersDir 保持一致；留空使用默认角色根目录。
+              # charactersDir: '/absolute/path/to/companion-data/characters'
+              characterId: ophelia
+          - id: time-context
+            name: '@deepseek-ai/dsh-time-context'
+          - id: tool-ask-user
+            name: '@deepseek-ai/dsh-tool-ask-user'
+          - id: tool-web
+            name: '@deepseek-ai/dsh-tool-web'
+            config:
+              fetch: true
+              searchTimeoutMs: 60000
+          - id: tool-schedule
+            name: '@deepseek-ai/dsh-tool-schedule'
+          - id: compaction
+            name: cordis:group
+            group: true
+            isolate:
+              compaction: true
+              toolResultPruner: true
+            config:
+              - id: compaction-basic
+                name: '@deepseek-ai/dsh-compaction-basic'
+              - id: command-compact
+                name: '@deepseek-ai/dsh-command-compact'
+              - id: tool-result-pruner
+                name: '@deepseek-ai/dsh-compaction-tool-result-pruner'
+                config:
+                  thresholdChars: 8192
+                  headChars: 4096
+                  tailChars: 1024
+    - id: companion-qq
+      name: '@local/dsh-companion/qq'
+      config:
+        # 与 companion-host 的 charactersDir 保持一致；留空使用默认角色根目录。
+        # charactersDir: '/absolute/path/to/companion-data/characters'
+        characterId: ophelia
+        # QQ 接入通道：napcat | qqbot。
+        # 在 Web UI 左侧「模型」面板切换后会写入 <角色目录>/qq/channel.json，并优先于这里。
+        channel: napcat
+        # QQ 官方机器人凭据。可以在这里填，也可以直接在 Web UI 面板里填写并保存；
+        # 面板保存的 AppSecret 只写在角色目录 qq/channel.json（不要提交到 Git）。
+        qqbot:
+          appId: ''
+          clientSecret: ''
+          sandbox: false
+          intents: 33554432
+        onebotUrl: 'ws://127.0.0.1:3001'
+        # NapCat 创建 WebSocket 服务器时会自动生成 token；若在 NapCat 里重建/清空，
+        # 需要把这里的值同步改成一致（或把 NapCat 的 token 清空）。
+        accessToken: ''
+        # 机器人 QQ（示例值，改成你自己的机器人 QQ；NapCat 里登录的就是这个号）。
+        botQQ: 123456789
+        # 白名单：只回复这些 QQ 号。示例主人 QQ=10001，必须改成你自己的，
+        # 留空数组会导致 QQ 通道启动时报错。
+        allowUsers: []
+        #   - 10001
+        historyLimit: 30
+        maxTokens: 8192
+        maxReplyChars: 30000
+        digestMaxChars: 30000
+        # 聊天内容用指定模型；留空则使用 Harness 默认模型。
+        # 记忆整理/生活事件/B站/生图提示词始终走 Harness 默认大模型。
+        # provider: your-provider
+        # model: your-model
+        reconnectMinMs: 1000
+        reconnectMaxMs: 30000
+        # 联网搜索（QQ 里按需查资料）；上下文上限 30w 字
+        webSearchEnabled: true
+        webSearchMaxResults: 20
+        webSearchTimeoutMs: 25000
+        webContextMaxChars: 300000
+        webFetchEnabled: true
+        webFetchMaxPages: 2
+        webFetchMaxChars: 150000
+        webFetchTimeoutMs: 8000
+        # 一条一段、多个气泡
+        maxBubbles: 30
+        maxBubbleChars: 4000
+        bubbleDelayMs: 300
+        # 图片/表情包识别（多模态；最多同时识别张数）
+        imageMaxCount: 4
+        # 每日生活事件：到点主动私聊分享（计划由凌晨记忆维护生成，QQ 启动时补齐当天）
+        proactiveEnabled: true
+        proactiveIntervalMs: 60000
+        proactiveMaxPerTick: 5
+        # 每日事件：晚上只生成时间；到点按当时上下文生成内容；主人还在聊天时先延后
+        lifeDeferredContent: true
+        lifeQuietMinutes: 5
+        # NapCat「正在输入」注意力模拟：持续输入/停留 20s 就主动搭话，10 分钟冷却
+        attentionEnabled: true
+        attentionThresholdMs: 20000
+        attentionCooldownMs: 600000
+        # 本地 ComfyUI 生图：新场景/特殊动作/情绪激动时触发，Qwen Image 2.1 Turbo
+        imagegenEnabled: true
+        imagegenCooldownMs: 10000
+        imagegenMaxPerDay: 0
+        imagegenIdleStopMs: 600000
+        imagegenTimeoutMs: 600000
+        comfyUrl: http://127.0.0.1:8188
+        # 可选：comfy-cli 可执行文件与 ComfyUI 工作区。不填则不会自动拉起 ComfyUI，
+        # 只连接 comfyUrl 上已运行的实例；也可用环境变量 COMFY_CLI_PATH / COMFY_WORKSPACE 提供。
+        # comfyCliPath: '/path/to/comfy'
+        # comfyWorkspace: '/path/to/ComfyUI'
+        # 可选：生图工作流 JSON 路径（示例为包内 data/comfy/ 下的文件名；不填使用包内默认工作流）。
+        # comfyWorkflowPath: data/comfy/ophelia_qwen_image_2_1_turbo_isolated_api.json
+        comfyStartTimeoutMs: 300000
+        # 可选：启动 ComfyUI 时追加的参数（示例：自定义模型路径、输入/输出目录）。
+        # comfyExtraArgs:
+        #   - --enable-manager
+        #   - --output-directory
+        #   - '/path/to/ComfyUI/output'

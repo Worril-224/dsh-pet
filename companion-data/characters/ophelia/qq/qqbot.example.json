@@ -1,0 +1,11 @@
+{
+  "_说明": "QQ 官方机器人凭据模板：把 appId / clientSecret 换成自己在 QQ 开放平台申请的值，再把本文件内容合并进 channel.json 的 qqbot 字段（或另存为 qqbot.json 供插件读取）。真实凭据不要提交到公开仓库：channel.json、qqbot.json 均已被 .gitignore 忽略。",
+  "schemaVersion": 1,
+  "appId": "1234567890",
+  "clientSecret": "YOUR_CLIENT_SECRET",
+  "sandbox": true,
+  "intents": 33554432,
+  "baseUrl": "",
+  "allowOpenids": [],
+  "pendingUsers": []
+}

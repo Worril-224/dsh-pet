@@ -1,0 +1,63 @@
+{
+  "plugin": "companion-qq",
+  "updatedAt": "2026-11-11T21:20:00+08:00",
+  "started": false,
+  "channel": "napcat",
+  "channelLabel": "NapCat（OneBot 11）",
+  "botQQ": "123456789",
+  "allowUsers": [
+    "10001"
+  ],
+  "onebotUrl": "ws://127.0.0.1:3001",
+  "qqbot": {
+    "appId": "",
+    "configured": false,
+    "sandbox": false,
+    "intents": 33554432,
+    "allowOpenids": [],
+    "pendingUsers": []
+  },
+  "adapter": {
+    "id": "qq-napcat",
+    "channel": "qq",
+    "state": "stopped",
+    "transport": "onebot",
+    "displayName": "NapCat（OneBot 11）",
+    "sessionActive": false,
+    "supportsProactive": true,
+    "supportsAttention": true
+  },
+  "replyModel": {
+    "provider": "deepseek-official",
+    "model": "deepseek-flash"
+  },
+  "replyModelSource": "config",
+  "users": [
+    "10001"
+  ],
+  "features": {
+    "webSearch": true,
+    "webFetch": true,
+    "vision": true,
+    "bubbles": true,
+    "proactive": true,
+    "attention": true,
+    "imagegen": false
+  },
+  "proactive": {
+    "enabled": true,
+    "started": false
+  },
+  "imagegen": {
+    "enabled": false,
+    "lastImageAt": null,
+    "idleStopMs": 600000,
+    "cooldownMs": 10000,
+    "maxPerDay": 0,
+    "comfy": {
+      "url": "http://127.0.0.1:8188",
+      "startedByUs": false
+    }
+  },
+  "lastActivityAt": "2026-11-11T21:18:12+08:00"
+}
