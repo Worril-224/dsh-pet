@@ -12,12 +12,16 @@ jobs:
       fail-fast: false
       matrix:
         node-version: [20, 22]
+    # 测试用例的日期/层级断言按 Asia/Shanghai 时区编写（项目面向中文用户），
+    # 固定 TZ 保证在 UTC runner 上结果可复现。
+    env:
+      TZ: Asia/Shanghai
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
         with:
           node-version: ${{ matrix.node-version }}
-      - name: 同步插件测试
+      - name: 插件测试（232 项）
         run: node scripts/run-tests.mjs all
-      - name: 独立验收测试
+      - name: 独立验收测试（173 项）
         run: node 验收/verification/run-verification.mjs

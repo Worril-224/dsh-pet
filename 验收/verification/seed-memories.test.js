@@ -385,7 +385,10 @@ test('QM3: CLI 参数解析与角色路径校验', () => {
   assert.throws(() => parseArgs(['--wat']), /未知参数/u)
 
   const paths = resolveCharacterPaths({ characterId: 'ophelia', charactersDir: 'D:/x/characters' })
-  assert.equal(paths.personaFile, path.join('D:/x/characters', 'ophelia', 'persona', 'persona.json'))
+  // resolveCharacterPaths 内部用 path.resolve 规范化角色根目录；在 POSIX 上 'D:/x/...' 是相对路径，
+  // 会被拼到 cwd 下，因此断言也要用同样的方式推导，避免跨平台差异。
+  const expectedRoot = path.resolve('D:/x/characters')
+  assert.equal(paths.personaFile, path.join(expectedRoot, 'ophelia', 'persona', 'persona.json'))
   assert.throws(() => resolveCharacterPaths({ characterId: '../evil', charactersDir: 'D:/x/characters' }), /非法/u)
   // buildSeedItemsFromFile 只读人设文件
   const built = buildSeedItemsFromFile({ personaFile: REAL_PERSONA, characterId: 'ophelia', nowMs: NOW_MS })

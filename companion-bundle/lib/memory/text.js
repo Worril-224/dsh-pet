@@ -165,9 +165,11 @@ export function extractKeywords(content, limit = 5) {
     }
   }
 
-  const ordered = [...entries.entries()].sort(
-    (a, b) => b[1] - a[1] || b[0].length - a[0].length || a[0].localeCompare(b[0]),
-  )
+  // 同分且等长的关键词按「正文中首次出现」的顺序保留（Array.prototype.sort 稳定）。
+  // 这里刻意不用 localeCompare 做兜底排序：其比较结果依赖运行环境的 ICU/区域设置
+  // （例如 Windows 的 zh-CN 与 Linux 的 C locale 对中文给出的顺序不同），会让同一段
+  // 文本在不同平台上抽出不同的关键词，进而影响检索与测试的可复现性。
+  const ordered = [...entries.entries()].sort((a, b) => b[1] - a[1] || b[0].length - a[0].length)
   return ordered.slice(0, Math.max(1, limit)).map(([word]) => word)
 }
 

@@ -1,4 +1,4 @@
-/**
+﻿/**
  * OneBot 11 适配器（用于 NapCat / Lagrange 等本地 QQ 桥）。
  *
  * 支持：
@@ -419,7 +419,8 @@ export class OneBotAdapter extends IMAdapter {
         this._pending.delete(echo)
         reject(new IMAdapterError('onebot_action_timeout', `OneBot action ${action} 超时`))
       }, this._config.actionTimeoutMs)
-      timer.unref?.()
+      // 注意：不 unref 超时计时器——它代表一个正在等待的操作，必须让事件循环保持存活，
+      // 否则进程/测试在事件循环空闲时会提前退出，promise 永远挂起。
       this._pending.set(echo, { resolve, reject, timer })
       try {
         if (typeof ws.send === 'function') ws.send(payload)

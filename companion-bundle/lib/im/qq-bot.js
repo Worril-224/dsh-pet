@@ -1,4 +1,4 @@
-/**
+﻿/**
  * QQ 官方机器人适配器（QQ 开放平台 v2）。
  *
  * 与 NapCat / OneBot 不同，官方机器人走腾讯开放平台，不依赖外部注入：
@@ -477,7 +477,7 @@ export class QQBotAdapter extends IMAdapter {
     this._readyTimer = setTimeout(() => {
       this.#failReady(new IMAdapterError('qq_ready_timeout', 'QQ 网关鉴权超时'))
     }, this._qq.connectTimeoutMs)
-    this._readyTimer.unref?.()
+    // 不 unref：鉴权期间必须保持事件循环存活（否则等待方会永久挂起）。
     return this._readyPromise
   }
 
@@ -521,7 +521,7 @@ export class QQBotAdapter extends IMAdapter {
         }
         reject(new IMAdapterError('qq_ws_timeout', `连接 QQ 网关超时（${url}）`))
       }, this._qq.connectTimeoutMs)
-      timer.unref?.()
+      // 不 unref：正在等待连接建立，必须保持事件循环存活。
       const finish = (error) => {
         if (settled) return
         settled = true
@@ -773,7 +773,7 @@ export class QQBotAdapter extends IMAdapter {
     const timer = controller
       ? setTimeout(() => controller.abort(), this._qq.requestTimeoutMs)
       : undefined
-    timer?.unref?.()
+    // 不 unref：请求进行中需要计时器在事件循环里存活，才能按时 abort。
     try {
       return await fetchImpl(url, { ...init, ...(controller ? { signal: controller.signal } : {}) })
     } finally {

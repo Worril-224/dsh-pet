@@ -6,7 +6,8 @@
 
 8+1 人设模块 · 短期 + 七层长期记忆 · QQ 双通道 · 每日生活事件 · 本地 ComfyUI 生图 · 多角色隔离
 
-![tests](https://img.shields.io/badge/automated%20tests-232%20passing-brightgreen)
+[![tests](https://github.com/Worril-224/dsh-pet/actions/workflows/ci.yml/badge.svg)](https://github.com/Worril-224/dsh-pet/actions/workflows/ci.yml)
+![automated tests](https://img.shields.io/badge/automated%20tests-232%20passing-brightgreen)
 ![acceptance](https://img.shields.io/badge/acceptance-118%20cases%20%C2%B7%2025%20groups-blue)
 ![node](https://img.shields.io/badge/node-%E2%89%A520-informational)
 ![license](https://img.shields.io/badge/license-MIT-green)
@@ -373,6 +374,7 @@ dsh-pet/
 - 「每日生活事件」「B 站观看」「注意力」等内容是**角色扮演性质**的生成结果，不是真实日程或真实行为记录。
 - 生图、B 站、联网检索依赖外部服务（ComfyUI / B 站 / 搜索），未配置时对应功能自动跳过，不影响聊天。
 - 记忆整理、人设一致性依赖模型行为，需要真人对话调优；`persona_lookup` 的实际调用意愿受模型影响。
+- 自动化测试的日期/层级断言按 **Asia/Shanghai** 时区编写；在其他时区运行请先设置环境变量 `TZ=Asia/Shanghai`（仓库自带的 CI 已设置）。
 - 仓库内所有角色、记忆、对话均为**虚构示例数据**，与任何真实个人无关。
 - 请勿把你自己的真实聊天记录、QQ 配置、B 站 Cookie 提交到公开仓库（相关文件已在 `.gitignore` 中排除）。
 

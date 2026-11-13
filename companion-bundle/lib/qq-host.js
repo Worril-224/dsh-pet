@@ -1,4 +1,4 @@
-/**
+﻿/**
  * companion-qq：Host 插件（QQ 通道：NapCat / OneBot 11 或 QQ 官方机器人）。
  *
  * 职责：
@@ -1168,10 +1168,8 @@ export function createQQHost({ config = {}, deps = {} } = {}) {
   }
 
   function delay(ms) {
-    return new Promise((resolve) => {
-      const timer = setTimeout(resolve, ms)
-      timer.unref?.()
-    })
+    // 不 unref：这个延时会被 await（气泡间隔 / 通道切换），必须让事件循环保持存活。
+    return new Promise((resolve) => setTimeout(resolve, ms))
   }
 
   /**

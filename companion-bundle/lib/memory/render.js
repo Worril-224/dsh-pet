@@ -115,7 +115,10 @@ export function buildOverviewMarkdown({ shortItems = [], layers = [], meta = {},
   if (keywordCounts.size > 0) {
     lines.push('## 关键词索引', '')
     lines.push('| 关键词 | 出现记忆数 |', '| --- | --- |')
-    const ordered = [...keywordCounts.entries()].sort((a, b) => b[1] - a[1] || a[0].localeCompare(b[0]))
+    // 次数降序；同次数按码位排序，保证总览输出跨平台一致（不用 localeCompare）。
+    const ordered = [...keywordCounts.entries()].sort(
+      (a, b) => b[1] - a[1] || (a[0] < b[0] ? -1 : a[0] > b[0] ? 1 : 0),
+    )
     for (const [keyword, count] of ordered) {
       lines.push(`| ${escapeMarkdownCell(keyword)} | ${count} |`)
     }
